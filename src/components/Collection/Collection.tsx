@@ -91,7 +91,11 @@ function Collection() {
             {filteredCollection.map((pokemon) => (
               <div
                 key={pokemon.id}
-                onClick={() => setSelectedPokemonId(selectedPokemonId === pokemon.id ? null : pokemon.id)}
+                onClick={() =>
+                  setSelectedPokemonId(
+                    selectedPokemonId === pokemon.id ? null : pokemon.id,
+                  )
+                }
                 className={`${styles.gridItem} ${selectedPokemonId === pokemon.id ? styles.selected : ""}`}
               >
                 <img
@@ -129,7 +133,7 @@ function Collection() {
               transition={{ duration: 0.2 }}
               onClick={() => setSelectedPokemonId(null)}
             />
-            
+
             {/* Drawer */}
             <motion.div
               className={styles.drawer}

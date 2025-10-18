@@ -10,7 +10,12 @@ import {
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { motion } from "framer-motion";
-import { Zap, Gamepad2, BookOpen, Settings as SettingsIcon } from "lucide-react";
+import {
+  Zap,
+  Gamepad2,
+  BookOpen,
+  Settings as SettingsIcon,
+} from "lucide-react";
 import { useStore } from "./store/useStore";
 import WelcomePage from "./pages/WelcomePage";
 import StartPage from "./pages/StartPage";
@@ -22,11 +27,7 @@ import ThemeToggle from "./components/ThemeToggle/ThemeToggle";
 
 function AppContent() {
   const location = useLocation();
-  const {
-    initialize,
-    initialized,
-    progress,
-  } = useStore();
+  const { initialize, initialized, progress } = useStore();
 
   useEffect(() => {
     initialize();

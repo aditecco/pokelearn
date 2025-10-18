@@ -77,8 +77,7 @@ export const useStore = create<StoreState>((set, get) => ({
       const progress = savedProgress
         ? {
             ...savedProgress,
-            completedChallengeSets:
-              savedProgress.completedChallengeSets || [],
+            completedChallengeSets: savedProgress.completedChallengeSets || [],
           }
         : get().progress;
 
@@ -276,8 +275,10 @@ export const useStore = create<StoreState>((set, get) => ({
       const oldPoints = progress.totalPoints;
       const newPoints = oldPoints + currentChallenge.points;
       // Unlock legendary only when crossing a 100-point milestone (100, 200, 300, etc.)
-      const crossedMilestone = Math.floor(oldPoints / LEGENDARY_THRESHOLD) < Math.floor(newPoints / LEGENDARY_THRESHOLD);
-      
+      const crossedMilestone =
+        Math.floor(oldPoints / LEGENDARY_THRESHOLD) <
+        Math.floor(newPoints / LEGENDARY_THRESHOLD);
+
       const newProgress = {
         ...progress,
         totalPoints: newPoints,

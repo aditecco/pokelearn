@@ -21,7 +21,7 @@ function PrizeModal({
 
   useEffect(() => {
     // Block body scroll when modal is open
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     if (pokemon.cries?.latest) {
       audioRef.current = new Audio(pokemon.cries.latest);
@@ -32,8 +32,8 @@ function PrizeModal({
 
     return () => {
       // Restore body scroll when modal closes
-      document.body.style.overflow = '';
-      
+      document.body.style.overflow = "";
+
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
