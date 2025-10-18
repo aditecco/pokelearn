@@ -38,3 +38,5 @@ A Pokemon-themed educational app for 2nd graders to learn Italian, Math, and Eng
 ## License
 
 MIT
+
+<!-- -->
