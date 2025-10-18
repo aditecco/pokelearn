@@ -1,0 +1,128 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  font-size: 36px;
+  color: var(--text);
+  margin: 0 0 32px 0;
+}
+
+.section {
+  background: var(--surface);
+  border: var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.sectionTitle {
+  font-size: 24px;
+  color: var(--text);
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: var(--border);
+}
+
+.setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.settingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settingLabel {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.settingDescription {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.toggle {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  background: var(--surface-2);
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &.active {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  }
+}
+
+.toggleSlider {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  background: var(--surface);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  box-shadow: var(--shadow-sm);
+
+  .active & {
+    transform: translateX(28px);
+  }
+}
+
+.dangerButton {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(239, 68, 68, 0.5);
+  }
+}
+
+.warning {
+  font-size: 14px;
+  color: #f87171;
+  margin: 0;
+  text-align: center;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  p {
+    font-size: 16px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+}
+
+.version {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+}

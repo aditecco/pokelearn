@@ -1,0 +1,25 @@
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  border: var(--border);
+  border-radius: 999px;
+  padding: 8px 12px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.1s ease;
+}
+.toggle:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+}

@@ -1,0 +1,124 @@
+:root {
+  /* Color tokens */
+  --bg: #0b1020;
+  --surface: #11162a;
+  --surface-2: #151b31;
+  --text: #e8edf7;
+  --text-muted: #a8b0c3;
+  --primary: #7c5cff;
+  --primary-2: #5e8bff;
+  --accent: #22d3ee;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  /* Gradients */
+  --gradient-1: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-2) 100%
+  );
+  --gradient-card: linear-gradient(
+    180deg,
+    rgba(124, 92, 255, 0.12) 0%,
+    rgba(21, 27, 49, 0.6) 100%
+  );
+
+  /* Shadows */
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+  /* Radii & borders */
+  --radius: 16px;
+  --radius-lg: 22px;
+  --border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/***** Light theme *****/
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f8fb;
+    --surface: #ffffff;
+    --surface-2: #f2f5fb;
+    --text: #101728;
+    --text-muted: #5b6478;
+    --primary: #6052ff;
+    --primary-2: #2f7fff;
+    --accent: #06b6d4;
+    --gradient-card: linear-gradient(
+      180deg,
+      rgba(96, 82, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.9) 100%
+    );
+    --shadow-sm: 0 6px 20px rgba(16, 23, 40, 0.08);
+    --shadow-md: 0 16px 40px rgba(16, 23, 40, 0.12);
+    --border: 1px solid rgba(16, 23, 40, 0.06);
+  }
+}
+
+/***** Explicit theme override via data-theme *****/
+:root[data-theme="light"] {
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --surface-2: #f2f5fb;
+  --text: #101728;
+  --text-muted: #5b6478;
+  --primary: #6052ff;
+  --primary-2: #2f7fff;
+  --accent: #06b6d4;
+  --gradient-card: linear-gradient(
+    180deg,
+    rgba(96, 82, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
+  --shadow-sm: 0 6px 20px rgba(16, 23, 40, 0.08);
+  --shadow-md: 0 16px 40px rgba(16, 23, 40, 0.12);
+  --border: 1px solid rgba(16, 23, 40, 0.06);
+}
+
+:root[data-theme="dark"] {
+  /* defaults at top already represent dark */
+}
+
+/* App base */
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Utility cards */
+.card {
+  background: var(--surface);
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: saturate(120%) blur(6px);
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.button-primary {
+  background: var(--gradient-1);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+.button-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
