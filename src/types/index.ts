@@ -93,3 +93,11 @@ export type AppState = {
   selectedDifficulty: Difficulty | null;
   pathChallengeIds?: string[];
 };
+
+export type ExportData = {
+  version: string;
+  exportedAt: number;
+  userName: string | null;
+  collection: SavedPokemon[];
+  progress: UserProgress;
+};
