@@ -126,3 +126,61 @@
   color: var(--text-muted);
   font-style: italic;
 }
+
+.backupButtons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.primaryButton,
+.importButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.importButton {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+  &:hover {
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5);
+  }
+}
+
+.info {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
