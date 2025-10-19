@@ -1,4 +1,9 @@
-import type { SavedPokemon, UserProgress, Settings } from "../types";
+import type {
+  SavedPokemon,
+  UserProgress,
+  Settings,
+  ExportData,
+} from "../types";
 
 const DB_NAME = "PokeLearnDB";
 const DB_VERSION = 1;
@@ -154,4 +159,58 @@ export async function getSettings(): Promise<Settings | null> {
     };
     request.onerror = () => reject(request.error);
   });
+}
+
+export async function exportAllData(): Promise<ExportData> {
+  const [pokemon, progress] = await Promise.all([
+    getAllPokemon(),
+    getProgress(),
+  ]);
+
+  const defaultProgress: UserProgress = {
+    totalPoints: 0,
+    challengesCompleted: 0,
+    challengesFailed: 0,
+    pokemonCollected: 0,
+    legendariesUnlocked: false,
+    tutorialCompleted: false,
+    userName: null,
+    completedChallengeSets: [],
+  };
+
+  return {
+    version: "1.0.0",
+    exportedAt: Date.now(),
+    userName: progress?.userName || null,
+    collection: pokemon,
+    progress: progress || defaultProgress,
+  };
+}
+
+function validateExportData(data: unknown): data is ExportData {
+  if (typeof data !== "object" || data === null) return false;
+
+  const d = data as Partial<ExportData>;
+
+  return (
+    typeof d.version === "string" &&
+    typeof d.exportedAt === "number" &&
+    Array.isArray(d.collection) &&
+    typeof d.progress === "object" &&
+    d.progress !== null
+  );
+}
+
+export async function importData(data: ExportData): Promise<void> {
+  if (!validateExportData(data)) {
+    throw new Error("Invalid backup file format");
+  }
+
+  await clearAllPokemon();
+
+  for (const pokemon of data.collection) {
+    await savePokemon(pokemon);
+  }
+
+  await saveProgress(data.progress);
 }
