@@ -223,7 +223,7 @@ function PrizeModal({
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        {isTutorial ? "Vai alla collection 🚀" : "Continua"}
+        {isTutorial ? "Vai alla collection" : "Continua"}
         <ArrowRight size={20} />
       </motion.button>
     </motion.div>
