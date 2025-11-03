@@ -3,29 +3,28 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BookOpen, Calculator, Languages, Filter } from "lucide-react";
 import { useStore } from "../../store/useStore";
-import { getChallengeSetsByGradeAndDifficulty } from "../../data/challengeSets";
 import type { ChallengeSet, Difficulty, Grade, Subject } from "../../types";
 import styles from "./ChallengeSetSelection.module.scss";
 
 function ChallengeSetSelection() {
   const navigate = useNavigate();
-  const { settings, progress, startChallengePath, updateSettings } = useStore();
+  const { settings, progress, challengeSets: allSets, startChallengePath, updateSettings } =
+    useStore();
   const [selectedGrade, setSelectedGrade] = useState<Grade>(settings.grade);
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(
     settings.difficulty,
   );
   const [showOnlyUncompleted, setShowOnlyUncompleted] = useState(false);
 
-  const allChallengeSets = getChallengeSetsByGradeAndDifficulty(
-    selectedGrade,
-    selectedDifficulty,
+  const filteredByGrade = allSets.filter(
+    (set) => set.grade === selectedGrade && set.difficulty === selectedDifficulty,
   );
 
   const challengeSets = showOnlyUncompleted
-    ? allChallengeSets.filter(
+    ? filteredByGrade.filter(
         (set) => !progress.completedChallengeSets?.includes(set.id),
       )
-    : allChallengeSets;
+    : filteredByGrade;
 
   function handleDifficultyChange(difficulty: Difficulty) {
     setSelectedDifficulty(difficulty);
