@@ -125,7 +125,7 @@ function Challenge() {
     // Advance to next challenge or return to start
     if (!selectedChallengeSet) return;
     const nextIndex = currentChallengeIndex + 1;
-    const hasNext = advanceToNextChallenge();
+    const hasNext = await advanceToNextChallenge();
     if (hasNext) {
       navigate(`/challenge/${selectedChallengeSet.id}/${nextIndex}`, {
         replace: true,
@@ -364,10 +364,10 @@ function Challenge() {
 
       {isCompleted && !isSuccess ? (
         <button
-          onClick={() => {
+          onClick={async () => {
             if (!selectedChallengeSet) return;
             const nextIndex = currentChallengeIndex + 1;
-            const hasNext = advanceToNextChallenge();
+            const hasNext = await advanceToNextChallenge();
             if (hasNext) {
               navigate(`/challenge/${selectedChallengeSet.id}/${nextIndex}`, {
                 replace: true,
