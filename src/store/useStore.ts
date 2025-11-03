@@ -7,6 +7,7 @@ import type {
   Subject,
   Difficulty,
   ChallengeSet,
+  Challenge,
 } from "../types";
 import {
   getAllPokemon,
@@ -18,21 +19,22 @@ import {
   saveSettings as saveSettingsDB,
   getSettings,
 } from "../services/db";
-import { getRandomChallenge, getChallengeById } from "../data/challenges";
-import { getChallengeSetById } from "../data/challengeSets";
+import * as contentService from "../services/content";
 
 const LEGENDARY_THRESHOLD = 100;
 
 type StoreState = AppState & {
   initialized: boolean;
+  challenges: Challenge[];
+  challengeSets: ChallengeSet[];
   initialize: () => Promise<void>;
-  startChallengePath: (challengeSet: ChallengeSet) => void;
-  loadChallengeAt: (setId: string, index: number) => void;
+  startChallengePath: (challengeSet: ChallengeSet) => Promise<void>;
+  loadChallengeAt: (setId: string, index: number) => Promise<void>;
   clearChallengeSet: () => void;
   setUserName: (name: string) => Promise<void>;
   completeTutorial: (pokemon: Pokemon) => Promise<void>;
-  startChallenge: (subject: Subject, difficulty: Difficulty) => void;
-  advanceToNextChallenge: () => boolean;
+  startChallenge: (subject: Subject, difficulty: Difficulty) => Promise<void>;
+  advanceToNextChallenge: () => Promise<boolean>;
   submitAnswer: (answer: string) => boolean;
   claimPokemon: (pokemon: Pokemon) => Promise<void>;
   savePokemonToCollection: (pokemon: Pokemon) => Promise<void>;
@@ -43,6 +45,8 @@ type StoreState = AppState & {
 
 export const useStore = create<StoreState>((set, get) => ({
   initialized: false,
+  challenges: [],
+  challengeSets: [],
   settings: {
     grade: 2,
     difficulty: "Facile",
@@ -69,9 +73,14 @@ export const useStore = create<StoreState>((set, get) => ({
 
   initialize: async () => {
     try {
-      const savedProgress = await getProgress();
-      const savedSettings = await getSettings();
-      const savedCollection = await getAllPokemon();
+      const [savedProgress, savedSettings, savedCollection, challenges, challengeSets] =
+        await Promise.all([
+          getProgress(),
+          getSettings(),
+          getAllPokemon(),
+          contentService.fetchChallenges(),
+          contentService.fetchChallengeSets(),
+        ]);
 
       // Ensure completedChallengeSets exists for backward compatibility
       const progress = savedProgress
@@ -83,14 +92,18 @@ export const useStore = create<StoreState>((set, get) => ({
 
       set({
         initialized: true,
+        challenges,
+        challengeSets,
         progress,
         settings: savedSettings || get().settings,
         collection: savedCollection,
       });
     } catch (error) {
-      console.error("Error initializing DB:", error);
+      console.error("Error initializing:", error);
       set({
         initialized: true,
+        challenges: [],
+        challengeSets: [],
         progress: get().progress,
         settings: get().settings,
         collection: [],
@@ -98,11 +111,12 @@ export const useStore = create<StoreState>((set, get) => ({
     }
   },
 
-  loadChallengeAt: (setId: string, index: number) => {
-    const challengeSet = getChallengeSetById(setId);
+  loadChallengeAt: async (setId: string, index: number) => {
+    const { challengeSets, challenges } = get();
+    const challengeSet = challengeSets.find((s) => s.id === setId);
     if (!challengeSet) return;
     const challengeId = challengeSet.challengeIds[index];
-    const challenge = challengeId ? getChallengeById(challengeId) : null;
+    const challenge = challengeId ? challenges.find((c) => c.id === challengeId) : null;
     if (!challenge) return;
 
     set({
@@ -121,7 +135,9 @@ export const useStore = create<StoreState>((set, get) => ({
     });
   },
 
-  startChallengePath: (challengeSet: ChallengeSet) => {
+  startChallengePath: async (challengeSet: ChallengeSet) => {
+    const { challenges } = get();
+
     set({
       selectedChallengeSet: challengeSet,
       selectedDifficulty: challengeSet.difficulty,
@@ -134,7 +150,7 @@ export const useStore = create<StoreState>((set, get) => ({
     // Load first challenge
     const firstChallengeId = challengeSet.challengeIds[0];
     if (firstChallengeId) {
-      const challenge = getChallengeById(firstChallengeId);
+      const challenge = challenges.find((c) => c.id === firstChallengeId);
       if (challenge) {
         set({
           currentChallenge: challenge,
@@ -161,8 +177,8 @@ export const useStore = create<StoreState>((set, get) => ({
     });
   },
 
-  advanceToNextChallenge: () => {
-    const { selectedChallengeSet, currentChallengeIndex, progress } = get();
+  advanceToNextChallenge: async () => {
+    const { selectedChallengeSet, currentChallengeIndex, progress, challenges } = get();
     if (!selectedChallengeSet) return false;
 
     const nextIndex = currentChallengeIndex + 1;
@@ -184,7 +200,7 @@ export const useStore = create<StoreState>((set, get) => ({
     }
 
     const nextChallengeId = selectedChallengeSet.challengeIds[nextIndex];
-    const nextChallenge = getChallengeById(nextChallengeId);
+    const nextChallenge = challenges.find((c) => c.id === nextChallengeId);
 
     if (!nextChallenge) return false;
 
@@ -239,9 +255,15 @@ export const useStore = create<StoreState>((set, get) => ({
     await saveProgress(newProgress);
   },
 
-  startChallenge: (subject: Subject, difficulty: Difficulty) => {
-    const challenge = getRandomChallenge(subject, difficulty);
-    if (!challenge) return;
+  startChallenge: async (subject: Subject, difficulty: Difficulty) => {
+    const { challenges } = get();
+    const filtered = challenges.filter(
+      (c) => c.subject === subject && c.difficulty === difficulty,
+    );
+    if (filtered.length === 0) return;
+
+    const randomIndex = Math.floor(Math.random() * filtered.length);
+    const challenge = filtered[randomIndex];
 
     set({
       currentChallenge: challenge,
