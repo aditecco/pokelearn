@@ -8,7 +8,7 @@ const POINTS_MAP: Record<Difficulty, number> = {
 
 export const challenges: Challenge[] = [
   {
-    id: "ita-2-f-1",
+    id: "a1b2c3d4-e5f6-47a8-b9c0-d1e2f3a4b5c6",
     subject: "Italiano",
     grade: 2,
     difficulty: "Facile",
@@ -19,7 +19,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "ita-2-f-2",
+    id: "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6d7",
     subject: "Italiano",
     grade: 2,
     difficulty: "Facile",
@@ -30,7 +30,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "ita-2-f-3",
+    id: "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e8",
     subject: "Italiano",
     grade: 2,
     difficulty: "Facile",
@@ -40,7 +40,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "ita-2-m-1",
+    id: "d4e5f6a7-b8c9-40d1-e2f3-a4b5c6d7e8f9",
     subject: "Italiano",
     grade: 2,
     difficulty: "Medio",
@@ -51,7 +51,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "ita-2-m-2",
+    id: "e5f6a7b8-c9d0-41e2-f3a4-b5c6d7e8f9a0",
     subject: "Italiano",
     grade: 2,
     difficulty: "Medio",
@@ -62,7 +62,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "ita-2-m-3",
+    id: "f6a7b8c9-d0e1-42f3-a4b5-c6d7e8f9a0b1",
     subject: "Italiano",
     grade: 2,
     difficulty: "Medio",
@@ -72,7 +72,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "ita-2-d-1",
+    id: "a7b8c9d0-e1f2-43a4-b5c6-d7e8f9a0b1c2",
     subject: "Italiano",
     grade: 2,
     difficulty: "Difficile",
@@ -88,7 +88,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Difficile,
   },
   {
-    id: "ita-2-d-2",
+    id: "b8c9d0e1-f2a3-44b5-c6d7-e8f9a0b1c2d3",
     subject: "Italiano",
     grade: 2,
     difficulty: "Difficile",
@@ -100,7 +100,7 @@ export const challenges: Challenge[] = [
   },
 
   {
-    id: "mat-2-f-1",
+    id: "c9d0e1f2-a3b4-45c6-d7e8-f9a0b1c2d3e4",
     subject: "Matematica",
     grade: 2,
     difficulty: "Facile",
@@ -111,7 +111,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "mat-2-f-2",
+    id: "d0e1f2a3-b4c5-46d7-e8f9-a0b1c2d3e4f5",
     subject: "Matematica",
     grade: 2,
     difficulty: "Facile",
@@ -122,7 +122,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "mat-2-f-3",
+    id: "e1f2a3b4-c5d6-47e8-f9a0-b1c2d3e4f5a6",
     subject: "Matematica",
     grade: 2,
     difficulty: "Facile",
@@ -132,7 +132,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "mat-2-m-1",
+    id: "f2a3b4c5-d6e7-48f9-a0b1-c2d3e4f5a6b7",
     subject: "Matematica",
     grade: 2,
     difficulty: "Medio",
@@ -143,7 +143,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "mat-2-m-2",
+    id: "a3b4c5d6-e7f8-49a0-b1c2-d3e4f5a6b7c8",
     subject: "Matematica",
     grade: 2,
     difficulty: "Medio",
@@ -154,7 +154,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "mat-2-m-3",
+    id: "b4c5d6e7-f8a9-40b1-c2d3-e4f5a6b7c8d9",
     subject: "Matematica",
     grade: 2,
     difficulty: "Medio",
@@ -164,7 +164,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "mat-2-d-1",
+    id: "c5d6e7f8-a9b0-41c2-d3e4-f5a6b7c8d9e0",
     subject: "Matematica",
     grade: 2,
     difficulty: "Difficile",
@@ -175,7 +175,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Difficile,
   },
   {
-    id: "mat-2-d-2",
+    id: "d6e7f8a9-b0c1-42d3-e4f5-a6b7c8d9e0f1",
     subject: "Matematica",
     grade: 2,
     difficulty: "Difficile",
@@ -187,7 +187,7 @@ export const challenges: Challenge[] = [
   },
 
   {
-    id: "eng-2-f-1",
+    id: "e7f8a9b0-c1d2-43e4-f5a6-b7c8d9e0f1a2",
     subject: "Inglese",
     grade: 2,
     difficulty: "Facile",
@@ -198,7 +198,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "eng-2-f-2",
+    id: "f8a9b0c1-d2e3-44f5-a6b7-c8d9e0f1a2b3",
     subject: "Inglese",
     grade: 2,
     difficulty: "Facile",
@@ -209,7 +209,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "eng-2-f-3",
+    id: "a9b0c1d2-e3f4-45a6-b7c8-d9e0f1a2b3c4",
     subject: "Inglese",
     grade: 2,
     difficulty: "Facile",
@@ -219,7 +219,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Facile,
   },
   {
-    id: "eng-2-m-1",
+    id: "b0c1d2e3-f4a5-46b7-c8d9-e0f1a2b3c4d5",
     subject: "Inglese",
     grade: 2,
     difficulty: "Medio",
@@ -230,7 +230,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "eng-2-m-2",
+    id: "c1d2e3f4-a5b6-47c8-d9e0-f1a2b3c4d5e6",
     subject: "Inglese",
     grade: 2,
     difficulty: "Medio",
@@ -241,7 +241,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "eng-2-m-3",
+    id: "d2e3f4a5-b6c7-48d9-e0f1-a2b3c4d5e6f7",
     subject: "Inglese",
     grade: 2,
     difficulty: "Medio",
@@ -251,7 +251,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Medio,
   },
   {
-    id: "eng-2-d-1",
+    id: "e3f4a5b6-c7d8-49e0-f1a2-b3c4d5e6f7a8",
     subject: "Inglese",
     grade: 2,
     difficulty: "Difficile",
@@ -267,7 +267,7 @@ export const challenges: Challenge[] = [
     points: POINTS_MAP.Difficile,
   },
   {
-    id: "eng-2-d-2",
+    id: "f4a5b6c7-d8e9-40f1-a2b3-c4d5e6f7a8b9",
     subject: "Inglese",
     grade: 2,
     difficulty: "Difficile",
