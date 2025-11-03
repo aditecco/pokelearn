@@ -6,6 +6,12 @@ export type Grade = 1 | 2 | 3 | 4 | 5;
 
 export type ChallengeType = "multiple-choice" | "true-false" | "fill-blank";
 
+export type ChallengeMedia = {
+  type: "image" | "audio";
+  url: string;
+  alt?: string;
+};
+
 export type Challenge = {
   id: string;
   subject: Subject;
@@ -16,6 +22,13 @@ export type Challenge = {
   options?: string[];
   correctAnswer: string;
   points: number;
+  explanation?: string;
+  hint?: string;
+  media?: ChallengeMedia[];
+  tags?: string[];
+  isPublished?: boolean;
+  _createdAt?: string;
+  _updatedAt?: string;
 };
 
 export type ChallengeSet = {
@@ -28,6 +41,11 @@ export type ChallengeSet = {
   icon: string;
   color: string;
   challengeIds: string[];
+  estimatedMinutes?: number;
+  prerequisites?: string[];
+  isPublished?: boolean;
+  _createdAt?: string;
+  _updatedAt?: string;
 };
 
 export type ChallengeAttempt = {
