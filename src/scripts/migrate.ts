@@ -1,6 +1,6 @@
 import { createClient } from "@sanity/client";
-import { challenges } from "../src/data/challenges";
-import { challengeSets } from "../src/data/challengeSets";
+import { challenges } from "../data/challenges.ts";
+import { challengeSets } from "../data/challengeSets.ts";
 
 const projectId = process.env.VITE_SANITY_PROJECT_ID;
 const dataset = process.env.VITE_SANITY_DATASET || "production";

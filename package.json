@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{ts,tsx,scss,css}\"",
-    "migrate": "dotenv -e .env.local -- tsx migrate.ts"
+    "migrate": "dotenv -e .env.local -- tsx src/scripts/migrate.ts"
   },
   "dependencies": {
     "@sanity/client": "^7.12.0",
