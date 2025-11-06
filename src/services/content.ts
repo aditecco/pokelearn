@@ -1,4 +1,10 @@
-import type { Challenge, ChallengeSet, Subject, Difficulty, Grade } from "../types";
+import type {
+  Challenge,
+  ChallengeSet,
+  Subject,
+  Difficulty,
+  Grade,
+} from "../types";
 import { sanityClient, isSanityConfigured } from "./sanity";
 import { challenges as demoChallenges } from "../data/challenges";
 import { challengeSets as demoChallengesSets } from "../data/challengeSets";
@@ -70,7 +76,9 @@ function transformSanityChallenge(sanityChallenge: SanityChallenge): Challenge {
   };
 }
 
-function transformSanityChallengeSet(sanityChallengeSet: SanityChallengeSet): ChallengeSet {
+function transformSanityChallengeSet(
+  sanityChallengeSet: SanityChallengeSet,
+): ChallengeSet {
   return {
     id: sanityChallengeSet._id,
     name: sanityChallengeSet.name,
@@ -186,7 +194,9 @@ export async function getChallengeById(id: string): Promise<Challenge | null> {
   return challenges.find((c) => c.id === id) || null;
 }
 
-export async function getChallengeSetById(id: string): Promise<ChallengeSet | null> {
+export async function getChallengeSetById(
+  id: string,
+): Promise<ChallengeSet | null> {
   const sets = await fetchChallengeSets();
   return sets.find((s) => s.id === id) || null;
 }
@@ -196,7 +206,9 @@ export async function getChallengesByFilters(
   difficulty: Difficulty,
 ): Promise<Challenge[]> {
   const challenges = await fetchChallenges();
-  return challenges.filter((c) => c.subject === subject && c.difficulty === difficulty);
+  return challenges.filter(
+    (c) => c.subject === subject && c.difficulty === difficulty,
+  );
 }
 
 export async function getRandomChallenge(
@@ -214,5 +226,7 @@ export async function getChallengeSetsByGradeAndDifficulty(
   difficulty: Difficulty,
 ): Promise<ChallengeSet[]> {
   const sets = await fetchChallengeSets();
-  return sets.filter((set) => set.grade === grade && set.difficulty === difficulty);
+  return sets.filter(
+    (set) => set.grade === grade && set.difficulty === difficulty,
+  );
 }

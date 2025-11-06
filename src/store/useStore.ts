@@ -73,14 +73,19 @@ export const useStore = create<StoreState>((set, get) => ({
 
   initialize: async () => {
     try {
-      const [savedProgress, savedSettings, savedCollection, challenges, challengeSets] =
-        await Promise.all([
-          getProgress(),
-          getSettings(),
-          getAllPokemon(),
-          contentService.fetchChallenges(),
-          contentService.fetchChallengeSets(),
-        ]);
+      const [
+        savedProgress,
+        savedSettings,
+        savedCollection,
+        challenges,
+        challengeSets,
+      ] = await Promise.all([
+        getProgress(),
+        getSettings(),
+        getAllPokemon(),
+        contentService.fetchChallenges(),
+        contentService.fetchChallengeSets(),
+      ]);
 
       // Ensure completedChallengeSets exists for backward compatibility
       const progress = savedProgress
@@ -116,7 +121,9 @@ export const useStore = create<StoreState>((set, get) => ({
     const challengeSet = challengeSets.find((s) => s.id === setId);
     if (!challengeSet) return;
     const challengeId = challengeSet.challengeIds[index];
-    const challenge = challengeId ? challenges.find((c) => c.id === challengeId) : null;
+    const challenge = challengeId
+      ? challenges.find((c) => c.id === challengeId)
+      : null;
     if (!challenge) return;
 
     set({
@@ -178,7 +185,12 @@ export const useStore = create<StoreState>((set, get) => ({
   },
 
   advanceToNextChallenge: async () => {
-    const { selectedChallengeSet, currentChallengeIndex, progress, challenges } = get();
+    const {
+      selectedChallengeSet,
+      currentChallengeIndex,
+      progress,
+      challenges,
+    } = get();
     if (!selectedChallengeSet) return false;
 
     const nextIndex = currentChallengeIndex + 1;

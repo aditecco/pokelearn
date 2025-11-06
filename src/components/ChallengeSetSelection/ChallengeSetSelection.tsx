@@ -8,8 +8,13 @@ import styles from "./ChallengeSetSelection.module.scss";
 
 function ChallengeSetSelection() {
   const navigate = useNavigate();
-  const { settings, progress, challengeSets: allSets, startChallengePath, updateSettings } =
-    useStore();
+  const {
+    settings,
+    progress,
+    challengeSets: allSets,
+    startChallengePath,
+    updateSettings,
+  } = useStore();
   const [selectedGrade, setSelectedGrade] = useState<Grade>(settings.grade);
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(
     settings.difficulty,
@@ -17,7 +22,8 @@ function ChallengeSetSelection() {
   const [showOnlyUncompleted, setShowOnlyUncompleted] = useState(false);
 
   const filteredByGrade = allSets.filter(
-    (set) => set.grade === selectedGrade && set.difficulty === selectedDifficulty,
+    (set) =>
+      set.grade === selectedGrade && set.difficulty === selectedDifficulty,
   );
 
   const challengeSets = showOnlyUncompleted
