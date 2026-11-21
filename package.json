@@ -12,14 +12,15 @@
     "migrate": "dotenv -e .env.local -- tsx src/scripts/migrate.ts"
   },
   "engines": {
-    "node": "^24.22.1"
+    "node": "^26.13.1",
+    "npm": ">=11.19.1"
   },
   "dependencies": {
     "@sanity/client": "^7.12.0",
     "framer-motion": "^12.23.24",
     "lucide-react": "^0.545.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.9",
+    "react-dom": "^19.2.9",
     "react-hook-form": "^7.65.0",
     "react-hot-toast": "^2.6.0",
     "react-router-dom": "^7.12.0",
